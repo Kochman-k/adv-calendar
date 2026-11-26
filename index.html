@@ -8,10 +8,14 @@
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/day-01-captain-hat.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#000}
-.hd{font-family:Jost,system-ui,sans-serif}
+@font-face{font-family:Graphik;src:url(assets/fonts/Graphik-Regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Graphik;src:url(assets/fonts/Graphik-Medium.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Graphik;src:url(assets/fonts/Graphik-Semibold.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Graphik;src:url(assets/fonts/Graphik-Bold.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+.hd{font-family:Graphik,system-ui,sans-serif}
 .num{font-family:Jost,system-ui,sans-serif;font-variant-numeric:lining-nums}
 a{color:#fff;text-decoration:none}a:hover{color:#FFD27A}
 button{font-family:inherit;color:inherit}
@@ -33,20 +37,25 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
 .fwd{--d:1}.bwd{--d:-1}.ka .kick{animation:ka 1.9s ease-out}.kb .kick{animation:kb 1.9s ease-out}
 @keyframes ka{16%{transform:rotate(calc(var(--d) * var(--amp,1) * -7deg))}38%{transform:rotate(calc(var(--d) * var(--amp,1) * 4deg))}58%{transform:rotate(calc(var(--d) * var(--amp,1) * -2deg))}78%{transform:rotate(calc(var(--d) * var(--amp,1) * .8deg))}}
 @keyframes kb{16%{transform:rotate(calc(var(--d) * var(--amp,1) * -7deg))}38%{transform:rotate(calc(var(--d) * var(--amp,1) * 4deg))}58%{transform:rotate(calc(var(--d) * var(--amp,1) * -2deg))}78%{transform:rotate(calc(var(--d) * var(--amp,1) * .8deg))}}
-.hbtn:hover{filter:brightness(1.12)}
+.hbtn{position:relative}.hbtn:hover{filter:brightness(1.15)}
+.hbtn::after{content:attr(data-tip);position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-4px);padding:6px 10px;border-radius:8px;background:#fff;color:#0B0B0C;font-size:13px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .15s,transform .15s;z-index:40;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .wish{position:absolute;left:32px;bottom:28px;max-width:330px}
 .fld{width:100%;height:56px;box-sizing:border-box;border:1px solid #CFCBD6;border-radius:12px;background:#fff;font:inherit;font-size:18px;color:#15151B;padding:0 16px}
-.fld:focus{outline:2px solid #15151B;outline-offset:1px;border-color:#15151B}.fld[aria-invalid="true"]{border-color:#C8102E}
+.pinbox{caret-color:transparent}.fld:focus{outline:2px solid #15151B;outline-offset:1px;border-color:#15151B}.fld[aria-invalid="true"]{border-color:#C8102E}
 .bnr{height:46px;box-sizing:border-box;white-space:nowrap}
 @media (max-width:1280px){.wish{position:relative;left:auto;bottom:auto;margin:8px auto 36px;max-width:520px;text-align:center}}
+@media (max-width:1220px){.blabel{display:none}.hbtn{width:44px;padding:0 !important}.hbtn:hover::after,.hbtn:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}.hright .hbtn:last-child::after{left:auto;right:0;transform:translateY(-4px)}.hright .hbtn:last-child:hover::after,.hright .hbtn:last-child:focus-visible::after{transform:none}}
 @media (max-width:1100px){.gd{height:104px !important}}
-@media (max-width:760px){.hdr{padding:16px 14px 0 !important;gap:8px !important}.blabel{display:none}.hbtn{width:44px;padding:0 !important}.gd{height:72px !important}.wish{margin:8px 20px 32px}.bnr{font-size:14px !important}.bdate{display:none}}
+@media (max-width:760px){.hdr{grid-template-columns:auto 1fr auto !important;padding:16px 14px 0 !important;gap:8px !important}.hdr > a{justify-self:center}.hleft,.hright{gap:6px !important}.hbtn{width:40px;height:40px !important}.gd{height:56px !important}.wish{margin:8px 20px 32px}.bnr{font-size:14px !important}.bdate{display:none}}
 @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}}@keyframes fade{from{opacity:0}}
 .sha{animation:sha .5s ease}.shb{animation:shb .5s ease}
 @keyframes sha{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}@keyframes shb{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
 @keyframes popin{from{opacity:0;transform:scale(.2) rotate(-35deg)}}@keyframes nudge{0%{opacity:0;transform:translateY(8px)}12%,82%{opacity:1;transform:none}100%{opacity:0}}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,201,77,.7)}50%{box-shadow:0 0 0 8px rgba(255,201,77,0)}}
-@media (max-width:760px){.ctlrow{grid-template-columns:auto auto !important;justify-content:center;gap:12px !important}.ctlpad,.hlabel{display:none}.ctlrow .ctl{padding:0 !important;width:54px}.mid{gap:12px !important}.cnt{width:150px !important}.cnt div{font-size:13px !important}}
+.vbtn{position:relative}.vbtn::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,4px);padding:6px 10px;border-radius:8px;background:#fff;color:#0B0B0C;font-size:13px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .15s,transform .15s;z-index:40}.vbtn:hover::after,.vbtn:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media (max-width:760px){.calnew{display:none}}
+@media (max-width:760px){.ctlrow{grid-template-columns:auto auto auto !important;justify-content:center;gap:12px !important}.ctlpad,.hlabel{display:none}.ctlrow{gap:10px !important;padding-left:12px !important;padding-right:12px !important}.ctlrow .ctl{padding:0 !important;width:46px !important;height:46px !important}.mid{gap:8px !important}.cnt{width:118px !important}.cnt div{font-size:13px !important}.csub{display:none}}
+@media (hover:none){.vbtn::after{display:none}}
 @media (max-width:760px){.fl:nth-child(3n),.fl:nth-child(3n+1){display:none}}
 @media (prefers-reduced-motion:reduce){.fl,.cw,.dz,.bl,.kick{animation:none !important}.flip{transition:none}}
 </style>
@@ -54,7 +63,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
 <body>
 <div id="app"></div>
 <template id="dc-template">
-<div style="position: relative; overflow: hidden; min-height: 100vh; background: radial-gradient(120% 60% at 50% 100%, #0B1626 0%, #000 60%); color: #fff; font-family: Jost, system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="position: relative; overflow: hidden; min-height: 100vh; background: radial-gradient(120% 60% at 50% 100%, #070E18 0%, #000 60%); color: #fff; font-family: Graphik, system-ui, sans-serif; display: flex; flex-direction: column">
 
   <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none">
     <sc-for list="{{ snowBack }}" as="f" hint-placeholder-count="20">
@@ -63,17 +72,29 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
   </div>
 
   <header class="hdr" style="position: relative; z-index: 20; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 28px 56px 0">
-    <button class="hbtn" type="button" onClick="{{ openHow }}" aria-label="How it works" style="justify-self: start; height: 44px; padding: 0 18px 0 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: background .2s">
-      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6v.1"></path></svg>
-      <span class="blabel">How it works</span>
-    </button>
+    <div class="hleft" style="justify-self: start; display: flex; align-items: center; gap: 10px">
+      <button class="hbtn" type="button" onClick="{{ openHow }}" aria-label="How it works" data-tip="How it works" style="height: 44px; padding: 0 18px 0 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: background .2s">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6v.1"></path></svg>
+        <span class="blabel">How it works</span>
+      </button>
+      <button class="hbtn" type="button" onClick="{{ openTerms }}" aria-label="Terms and conditions" data-tip="Terms" style="height: 44px; padding: 0 18px 0 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: background .2s">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6"></path><path d="M9 17h4"></path></svg>
+        <span class="blabel">Terms</span>
+      </button>
+    </div>
     <a href="#" aria-label="The Good Deal by Synerise — home" style="display: flex">
       <img class="gd" src="assets/the-good-deal-logo.webp" alt="The Good Deal by Synerise" style="height: 130px; width: auto; display: block">
     </a>
-    <button class="hbtn" type="button" onClick="{{ share }}" aria-label="Share" style="justify-self: end; height: 44px; padding: 0 20px 0 16px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 0; background: #FFC94D; color: #0B0B0C; font-size: 16px; font-weight: 600; cursor: pointer">
-      <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5"></path><path d="M7.5 8L12 3.5 16.5 8"></path><path d="M5 12.5v5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-5"></path></svg>
-      <span class="blabel">Share</span>
-    </button>
+    <div class="hright" style="justify-self: end; display: flex; align-items: center; gap: 10px">
+      <button class="hbtn" type="button" onClick="{{ share }}" aria-label="Share" data-tip="Share" style="height: 44px; padding: 0 18px 0 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: background .2s">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5"></path><path d="M7.5 8L12 3.5 16.5 8"></path><path d="M5 12.5v5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-5"></path></svg>
+        <span class="blabel">Share</span>
+      </button>
+      <button class="hbtn" type="button" onClick="{{ openLogin }}" aria-label="{{loginLabel}}" data-tip="{{loginLabel}}" style="height: 44px; padding: 0 20px 0 16px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 0; background: #FFC94D; color: #0B0B0C; font-size: 16px; font-weight: 600; cursor: pointer">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"></path></svg>
+        <span class="blabel">{{loginLabel}}</span>
+      </button>
+    </div>
   </header>
 
   <div style="position: relative; z-index: 20; display: flex; justify-content: center; padding: 14px 16px 0">
@@ -95,7 +116,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
     </sc-if>
   </div>
 
-  <section aria-label="Advent calendar" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" onClickCapture="{{ swallow }}" onWheel="{{ wheel }}" style="position: relative; z-index: 10; cursor: grab; height: 560px; margin-top: 10px; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none">
+  <section aria-label="Advent calendar" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" onClickCapture="{{ swallow }}" onWheel="{{ wheel }}" onScroll="{{ noScroll }}" style="position: relative; z-index: 10; cursor: grab; height: 560px; margin-top: 10px; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none">
+    <sc-if value="{{ cardsView }}" hint-placeholder-val="{{ true }}">
     <div aria-hidden="true" style="position: absolute; left: 50%; top: 40px; width: 640px; height: 540px; margin-left: -320px; background: radial-gradient(closest-side, rgba(255,200,120,.16), transparent); pointer-events: none"></div>
 
     <div ref="{{ trackRef }}" class="{{trackCls}}" style="position: absolute; left: 50%; top: 0; height: 100%; width: {{trackW}}px; transform: translateX(-{{offset}}px); transition: transform .65s cubic-bezier(.22,.8,.2,1)">
@@ -139,12 +161,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
                 <div style="position: absolute; inset: 0; padding: 38px 24px 24px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; pointer-events: none">
                   <sc-if value="{{ c.isDay }}" hint-placeholder-val="{{ true }}">
                     <div class="hd" style="font-size: 30px; font-weight: 500; letter-spacing: 0">{{c.month}}</div>
-                    <div class="num" style="margin-top: 0; font-size: 200px; font-weight: 600; line-height: 1; letter-spacing: 0">{{c.dnum}}</div>
+                    <div class="num" style="margin-top: 0; font-size: 200px; font-weight: 600; line-height: 1; letter-spacing: {{digitSpacing}}em">{{c.dnum}}</div>
                     <div style="margin-top: 8px; font-size: 16px; font-weight: 500; letter-spacing: .04em">{{c.wdUp}}</div>
                   </sc-if>
                   <sc-if value="{{ c.isIntro }}" hint-placeholder-val="{{ false }}">
                     <div style="font-size: 13px; font-weight: 600; letter-spacing: .14em; color: #5E5953">THE GOOD DEAL</div>
-                    <div class="num" style="margin-top: auto; font-size: 60px; font-weight: 600; line-height: 1; letter-spacing: 0; text-align: center">How it<br>works</div>
+                    <div class="hd" style="margin-top: auto; font-size: 56px; font-weight: 600; line-height: 1.02; letter-spacing: -0.01em; text-align: center">How it<br>works</div>
                     <div style="margin-top: 14px; font-size: 16px; font-weight: 500; color: #5E5953">{{c.range}}</div>
                   </sc-if>
                   <div style="margin-top: auto; position: relative; z-index: 2; display: flex; align-items: center; gap: 10px; pointer-events: auto">
@@ -211,6 +233,42 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
     </div>
     <div aria-hidden="true" style="position: absolute; left: 0; top: 0; bottom: 0; width: 8%; background: linear-gradient(90deg, #000, rgba(0,0,0,0)); pointer-events: none"></div>
     <div aria-hidden="true" style="position: absolute; right: 0; top: 0; bottom: 0; width: 8%; background: linear-gradient(270deg, #000, rgba(0,0,0,0)); pointer-events: none"></div>
+    </sc-if>
+    <sc-if value="{{ gridView }}" hint-placeholder-val="{{ false }}">
+      <div style="position: absolute; inset: 0; display: flex; justify-content: center; padding: 14px 16px 18px; box-sizing: border-box; animation: fade .4s ease">
+        <div role="group" aria-label="{{calTitle}}" style="width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; color: #fff; padding: 0 2px">
+            <span class="hd" style="font-size: 22px; font-weight: 600">{{calTitle}}</span>
+            <span style="font-size: 13px; color: rgba(255,255,255,.6)">{{calOpened}} / 24 opened</span>
+          </div>
+          <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); grid-template-rows: 30px repeat({{calRows}}, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{ calWeekdays }}" as="wd" hint-placeholder-count="7">
+              <span style="display: flex; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255,255,255,.08); font-size: 11px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,.75)">{{wd}}</span>
+            </sc-for>
+            <sc-for list="{{ calCells }}" as="cc" hint-placeholder-count="35">
+              <sc-if value="{{ cc.hatch }}" hint-placeholder-val="{{ false }}">
+                <span aria-hidden="true" style="border-radius: 14px; background: repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 1.5px, rgba(255,255,255,0) 1.5px 9px); border: 1px solid rgba(255,255,255,.06); font-size: 13px; color: rgba(255,255,255,.28); display: flex; justify-content: center; padding-top: 8px; box-sizing: border-box">{{cc.n}}</span>
+              </sc-if>
+              <sc-if value="{{ cc.isDay }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ cc.open }}" aria-label="{{cc.label}}" aria-current="{{cc.current}}" style="position: relative; min-width: 0; min-height: 0; padding: 8px 0 0; box-sizing: border-box; border-radius: 14px; border: {{cc.bd}}; background: {{cc.bg}}; color: {{cc.col}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; overflow: visible">
+                  <span style="position: relative; z-index: 1">{{cc.n}}</span>
+                  <sc-if value="{{ cc.opened }}" hint-placeholder-val="{{ false }}">
+                    <img src="{{cc.icon}}" alt="" draggable="false" style="position: absolute; left: 50%; bottom: 6%; height: 58%; max-width: 86%; object-fit: contain; transform: translateX(-50%); pointer-events: none; filter: drop-shadow(0 6px 8px rgba(0,0,0,.35))">
+                  </sc-if>
+                  <sc-if value="{{ cc.isNew }}" hint-placeholder-val="{{ false }}">
+                    <span aria-hidden="true" style="position: absolute; top: -4px; right: -4px; width: 12px; height: 12px; border-radius: 50%; background: #FFC94D; box-shadow: 0 0 0 3px #111; animation: glow 2s ease-in-out infinite"></span>
+                    <span class="calnew" style="margin-top: auto; margin-bottom: 10px; padding: 3px 8px; border-radius: 999px; background: #FFC94D; color: #0B0B0C; font-size: 10px; font-weight: 700; letter-spacing: .08em">NEW</span>
+                  </sc-if>
+                  <sc-if value="{{ cc.locked }}" hint-placeholder-val="{{ false }}">
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: auto; margin-bottom: 10px"><rect x="5" y="10.5" width="14" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg>
+                  </sc-if>
+                </button>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
   </section>
 
   <nav aria-label="Carousel controls" class="ctlrow" style="position: relative; z-index: 20; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px; padding: 18px 20px 8px">
@@ -222,7 +280,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
         <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"><path d="M5.75,12L19,12"></path><path d="M10,7L5,12L10,17"></path></svg>
       </button>
       <div class="cnt" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 220px">
-        <div style="font-size: 15px; font-weight: 600; letter-spacing: .02em; font-variant-numeric: tabular-nums; white-space: nowrap"><span>{{cur}}</span><span style="opacity: .45">{{curSub}}</span></div>
+        <div style="font-size: 15px; font-weight: 600; letter-spacing: .02em; font-variant-numeric: tabular-nums; white-space: nowrap"><span>{{cur}}</span><span class="csub" style="opacity: .45">{{curSub}}</span></div>
         <div style="width: 100%; height: 2px; border-radius: 2px; background: rgba(255,255,255,.18); overflow: hidden">
           <div style="height: 100%; width: {{pct}}%; background: linear-gradient(90deg, #FFD27A, #FF5A5F); transition: width .6s ease"></div>
         </div>
@@ -231,9 +289,16 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
         <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"><path d="M18.25,12L5,12"></path><path d="M14,17L19,12L14,7"></path></svg>
       </button>
     </div>
-    <span aria-hidden="true" class="ctlpad"></span>
+    <button class="ctl vbtn" type="button" onClick="{{ toggleView }}" aria-label="{{viewLabel}}" aria-pressed="{{gridView}}" data-tip="{{viewLabel}}" style="justify-self: start; width: 54px; height: 54px; flex: none; border-radius: 50%; border: 1px solid {{viewBd}}; background: {{viewBg}}; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s">
+      <sc-if value="{{ cardsView }}" hint-placeholder-val="{{ true }}">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"><path d="M7.5 3v3"></path><path d="M16.5 3v3"></path><path d="M8.5 11.5h-1"></path><path d="M8.5 15h-1"></path><path d="M12.5 11.5h-1"></path><path d="M12.5 15h-1"></path><path d="M16.5 11.5h-1"></path><path d="M16.5 15h-1"></path><rect x="3" y="4.5" width="18" height="16.5" rx="3"></rect></svg>
+      </sc-if>
+      <sc-if value="{{ gridView }}" hint-placeholder-val="{{ false }}">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"><rect x="7" y="4" width="10" height="16" rx="2.5"></rect><path d="M4 7v10"></path><path d="M20 7v10"></path></svg>
+      </sc-if>
+    </button>
   </nav>
-  <p style="position: relative; z-index: 20; margin: 0 0 32px; text-align: center; font-size: 12.5px; color: rgba(255,255,255,.6)">Swipe to browse · tap a card to flip it</p>
+  <p style="position: relative; z-index: 20; margin: 0 0 32px; text-align: center; font-size: 12.5px; color: rgba(255,255,255,.6)">{{hint}}</p>
 
   <aside class="wish" aria-label="Season's greetings" style="z-index: 20; color: rgba(255,255,255,.82)">
     <p class="hd" style="margin: 0 0 6px; font-size: 18px; font-weight: 600; color: #fff">Season's greetings</p>
@@ -241,7 +306,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
   </aside>
 
   <sc-if value="{{ bidOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; inset: 0; z-index: 110; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Jost, system-ui, sans-serif">
+    <div style="position: fixed; inset: 0; z-index: 110; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Graphik, system-ui, sans-serif">
       <button type="button" onClick="{{ closeBid }}" aria-label="Close" tabindex="-1" style="position: absolute; inset: 0; border: 0; padding: 0; background: rgba(0,0,0,.6); cursor: pointer; animation: fade .3s ease"></button>
       <div role="dialog" aria-modal="true" aria-labelledby="bid-title" onKeyDown="{{ modalKey }}" style="position: relative; width: 100%; max-width: 560px; max-height: calc(100vh - 40px); overflow: auto; overscroll-behavior: contain; border-radius: 28px; background: linear-gradient(135deg, #F4E1FF 0%, #D6F2FF 30%, #FFF5D2 55%, #FFDAE8 78%, #E3DEFF 100%); color: #15151B; padding: clamp(22px, 4vw, 40px); box-sizing: border-box; box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: pop .4s cubic-bezier(.2,1.2,.4,1)">
         <div style="display: flex; flex-direction: column; gap: 20px">
@@ -274,26 +339,123 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
             <span style="font-weight: 600; color: #1E7A4C; font-variant-numeric: tabular-nums">{{b.min}}</span>
           </div>
 
-          <form onSubmit="{{ submitBid }}" style="display: flex; flex-direction: column; gap: 20px">
-            <div style="display: flex; flex-direction: column; gap: 8px">
-              <label for="bid-amount" style="font-size: 17px; font-weight: 600">Bid amount (PLN)</label>
-              <div style="position: relative">
-                <input id="bid-amount" class="fld" ref="{{ amountRef }}" type="text" inputmode="decimal" autocomplete="off" placeholder="{{b.minRaw}}" aria-invalid="{{b.errOn}}" aria-describedby="bid-help bid-err" style="padding-right: 64px; font-variant-numeric: tabular-nums">
-                <span aria-hidden="true" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #55555F; pointer-events: none">PLN</span>
+          <sc-if value="{{ notLoggedIn }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 18px; background: rgba(255,255,255,.65)">
+              <div style="display: flex; align-items: center; gap: 12px">
+                <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 50%; background: #15151B; display: flex; align-items: center; justify-content: center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC94D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg>
+                </span>
+                <p class="hd" style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.25">Log in to place a bid</p>
               </div>
-              <sc-if value="{{ b.errOn }}" hint-placeholder-val="{{ false }}">
-                <p id="bid-err" role="alert" style="margin: 0; font-size: 14px; font-weight: 500; color: #B00D27">{{b.err}}</p>
-              </sc-if>
-              <p id="bid-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">From {{b.min}} to PLN 1,000,000, at most 2 decimal places (comma or period).</p>
+              <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #33333D">Only registered participants can raise the bid. Log in with the 4-digit code from your registration email, or register first.</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                <button type="button" onClick="{{ loginToBid }}" style="flex: 1 1 160px; height: 52px; border: 0; border-radius: 999px; background: #FFC94D; color: #0B0B0C; font-size: 16px; font-weight: 600; cursor: pointer">Login</button>
+                <button type="button" onClick="{{ registerToBid }}" style="flex: 1 1 160px; height: 52px; border-radius: 999px; border: 1px solid rgba(21,21,27,.25); background: #fff; color: #15151B; font-size: 16px; font-weight: 600; cursor: pointer">Register</button>
+              </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 8px">
-              <label for="bid-nick" style="font-size: 17px; font-weight: 600">Nickname <span style="font-weight: 400; color: #55555F">(optional)</span></label>
-              <input id="bid-nick" class="fld" ref="{{ nickRef }}" type="text" maxlength="30" autocomplete="nickname" placeholder="e.g. Morning Runner" aria-describedby="nick-help">
-              <p id="nick-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">Don't use your full name. Your nickname is visible only in this browser.</p>
+          </sc-if>
+          <sc-if value="{{ isLoggedIn }}" hint-placeholder-val="{{ false }}">
+            <div onKeyDown="{{ enterBid }}" style="display: flex; flex-direction: column; gap: 20px">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <label for="bid-amount" style="font-size: 17px; font-weight: 600">Bid amount (PLN)</label>
+                <div style="position: relative">
+                  <input id="bid-amount" class="fld" ref="{{ amountRef }}" type="text" inputmode="decimal" autocomplete="off" placeholder="{{b.minRaw}}" aria-invalid="{{b.errOn}}" aria-describedby="bid-help bid-err" style="padding-right: 64px; font-variant-numeric: tabular-nums">
+                  <span aria-hidden="true" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #55555F; pointer-events: none">PLN</span>
+                </div>
+                <sc-if value="{{ b.errOn }}" hint-placeholder-val="{{ false }}">
+                  <p id="bid-err" role="alert" style="margin: 0; font-size: 14px; font-weight: 500; color: #B00D27">{{b.err}}</p>
+                </sc-if>
+                <p id="bid-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">From {{b.min}} to PLN 1,000,000, at most 2 decimal places (comma or period).</p>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <label for="bid-nick" style="font-size: 17px; font-weight: 600">Nickname <span style="font-weight: 400; color: #55555F">(optional)</span></label>
+                <input id="bid-nick" class="fld" ref="{{ nickRef }}" type="text" maxlength="30" autocomplete="nickname" placeholder="e.g. Morning Runner" aria-describedby="nick-help">
+                <p id="nick-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">Don't use your full name. Your nickname is visible only in this browser.</p>
+              </div>
+              <button type="button" onClick="{{ submitBid }}" style="height: 56px; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 17px; font-weight: 600; cursor: pointer">Place demo bid</button>
             </div>
-            <button type="submit" style="height: 56px; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 17px; font-weight: 600; cursor: pointer">Place demo bid</button>
-          </form>
+          </sc-if>
           <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #77737D">Demo only: bids are saved in this browser and are not sent anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ authOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 110; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Graphik, system-ui, sans-serif">
+      <button type="button" onClick="{{ closeAuth }}" aria-label="Close" tabindex="-1" style="position: absolute; inset: 0; border: 0; padding: 0; background: rgba(0,0,0,.66); cursor: pointer; animation: fade .3s ease"></button>
+      <div role="dialog" aria-modal="true" aria-labelledby="auth-title" onKeyDown="{{ modalKey }}" style="position: relative; width: 100%; max-width: 480px; max-height: calc(100vh - 40px); overflow: auto; overscroll-behavior: contain; border-radius: 28px; background: linear-gradient(135deg, #F4E1FF 0%, #D6F2FF 30%, #FFF5D2 55%, #FFDAE8 78%, #E3DEFF 100%); color: #15151B; padding: clamp(22px, 4vw, 40px); box-sizing: border-box; box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: pop .4s cubic-bezier(.2,1.2,.4,1)">
+        <button type="button" ref="{{ closeRef }}" onClick="{{ closeAuth }}" aria-label="Close" style="position: absolute; top: 16px; right: 16px; z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(21,21,27,.14); background: rgba(255,255,255,.8); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15151B" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+        </button>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: .14em; color: #4A4A57; padding-right: 56px">THE GOOD DEAL</span>
+          <h2 id="auth-title" class="hd" style="margin: 0; padding-right: 40px; font-size: clamp(28px, 4.4vw, 36px); font-weight: 600; line-height: 1.1">{{a.title}}</h2>
+
+          <sc-if value="{{ a.isLogin }}" hint-placeholder-val="{{ true }}">
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #2A2A33">To log in, enter the 4-digit code you received with your registration confirmation. You'll find it in your email inbox.</p>
+            <div onKeyDown="{{ enterPin }}" style="display: flex; flex-direction: column; gap: 16px">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <p id="auth-pin-label" style="margin: 0; font-size: 16px; font-weight: 600">4-digit code</p>
+                <div role="group" aria-labelledby="auth-pin-label" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+                  <sc-for list="{{ pinBoxes }}" as="pb" hint-placeholder-count="4">
+                    <input class="fld pinbox" ref="{{ pb.ref }}" onInput="{{ pb.onInput }}" onKeyDown="{{ pb.onKeyDown }}" onPaste="{{ pb.onPaste }}" onFocus="{{ pb.onFocus }}" type="text" inputmode="numeric" autocomplete="{{pb.ac}}" maxlength="4" aria-label="{{pb.label}}" aria-invalid="{{a.errOn}}" aria-describedby="auth-err" style="height: 76px; padding: 0; text-align: center; font-size: 32px; font-weight: 600; border-radius: 14px; font-variant-numeric: tabular-nums">
+                  </sc-for>
+                </div>
+                <sc-if value="{{ a.errOn }}" hint-placeholder-val="{{ false }}">
+                  <p id="auth-err" role="alert" style="margin: 0; font-size: 14px; font-weight: 500; color: #B00D27">{{a.err}}</p>
+                </sc-if>
+              </div>
+              <button type="button" onClick="{{ submitPin }}" style="height: 54px; width: 100%; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer">Login</button>
+            </div>
+            <div style="height: 1px; background: rgba(21,21,27,.12)"></div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2A2A33">Don't have an account yet? You can register.</p>
+            <button type="button" onClick="{{ goRegister }}" style="height: 54px; width: 100%; border-radius: 999px; border: 1px solid rgba(21,21,27,.25); background: rgba(255,255,255,.6); color: #15151B; font-size: 16px; font-weight: 600; cursor: pointer">Register</button>
+          </sc-if>
+
+          <sc-if value="{{ a.isRegister }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #2A2A33">Enter your email address. We'll send you a link to confirm your registration.</p>
+            <div onKeyDown="{{ enterEmail }}" style="display: flex; flex-direction: column; gap: 16px">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <label for="auth-email" style="font-size: 16px; font-weight: 600">Email address</label>
+                <input id="auth-email" class="fld" ref="{{ emailRef }}" type="text" inputmode="email" autocomplete="email" placeholder="name@company.com" aria-invalid="{{a.errOn}}" aria-describedby="auth-err2">
+                <sc-if value="{{ a.errOn }}" hint-placeholder-val="{{ false }}">
+                  <p id="auth-err2" role="alert" style="margin: 0; font-size: 14px; font-weight: 500; color: #B00D27">{{a.err}}</p>
+                </sc-if>
+              </div>
+              <button type="button" onClick="{{ submitEmail }}" style="height: 54px; width: 100%; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer">Register</button>
+            </div>
+            <button type="button" onClick="{{ goLogin }}" style="border: 0; padding: 0; background: none; color: #15151B; font: inherit; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px; align-self: flex-start">Back to login</button>
+          </sc-if>
+
+          <sc-if value="{{ a.isSent }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: #15151B">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFC94D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
+            </div>
+            <p role="status" style="margin: 0; font-size: 16px; line-height: 1.55; color: #2A2A33">We've sent a confirmation link to <strong>{{a.email}}</strong>. Check your inbox and confirm your registration.</p>
+            <div style="padding: 14px 16px; border-radius: 14px; border: 1px dashed rgba(21,21,27,.3); background: rgba(255,255,255,.5); display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 12px; font-weight: 600; letter-spacing: .1em; color: #4A4A57">DEMO</span>
+              <button type="button" onClick="{{ simulateConfirm }}" style="border: 0; padding: 0; background: none; color: #15151B; font: inherit; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px; align-self: flex-start; text-align: left">Simulate clicking the confirmation link in the email</button>
+            </div>
+            <button type="button" onClick="{{ goLogin }}" style="border: 0; padding: 0; background: none; color: #15151B; font: inherit; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px; align-self: flex-start">Back to login</button>
+          </sc-if>
+
+          <sc-if value="{{ a.isConfirmed }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: #3DDC97">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </div>
+            <p role="status" style="margin: 0; font-size: 16px; line-height: 1.55; color: #2A2A33">Thank you for confirming your email. Your login code is waiting for you in your inbox.</p>
+            <p style="margin: 0; font-size: 14px; color: #4A4A57">Demo: your code is <strong style="font-size: 16px; letter-spacing: .15em; color: #15151B">{{a.pin}}</strong>, but any code will work.</p>
+            <button type="button" onClick="{{ goLogin }}" style="height: 54px; width: 100%; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer">Login now</button>
+          </sc-if>
+
+          <sc-if value="{{ a.isAccount }}" hint-placeholder-val="{{ false }}">
+            <p role="status" style="margin: 0; font-size: 16px; line-height: 1.55; color: #2A2A33">You're logged in{{a.asEmail}}. You can now place bids and follow your auctions.</p>
+            <button type="button" onClick="{{ closeAuth }}" style="height: 54px; width: 100%; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer">Continue</button>
+            <button type="button" onClick="{{ logout }}" style="height: 54px; width: 100%; border-radius: 999px; border: 1px solid rgba(21,21,27,.25); background: rgba(255,255,255,.6); color: #15151B; font-size: 16px; font-weight: 600; cursor: pointer">Log out</button>
+          </sc-if>
+
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #4A4A57">Demo only: no emails are sent and nothing leaves this browser.</p>
         </div>
       </div>
     </div>
@@ -309,7 +471,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
     </sc-for>
   </div>
   <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Jost, system-ui, sans-serif">
+    <div style="position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Graphik, system-ui, sans-serif">
       <button type="button" onClick="{{ closeModal }}" aria-label="Close" tabindex="-1" style="position: absolute; inset: 0; border: 0; padding: 0; background: rgba(0,0,0,.66); cursor: pointer; animation: fade .3s ease"></button>
       <div role="dialog" aria-modal="true" aria-labelledby="prize-title" onKeyDown="{{ modalKey }}" style="position: relative; width: 100%; max-width: 720px; max-height: calc(100vh - 40px); overflow: auto; overscroll-behavior: contain; border-radius: 28px; background: linear-gradient(135deg, #F4E1FF 0%, #D6F2FF 30%, #FFF5D2 55%, #FFDAE8 78%, #E3DEFF 100%); color: #15151B; padding: clamp(22px, 4vw, 40px); box-sizing: border-box; box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: pop .4s cubic-bezier(.2,1.2,.4,1)">
         <button type="button" ref="{{ closeRef }}" onClick="{{ closeModal }}" aria-label="Close" style="position: absolute; top: 16px; right: 16px; z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(21,21,27,.14); background: rgba(255,255,255,.8); display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -342,7 +504,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
           </sc-for>
           <sc-if value="{{ m.hasList }}" hint-placeholder-val="{{ true }}">
             <div style="display: flex; flex-direction: column; gap: 12px">
-              <h3 class="hd" style="margin: 0; font-size: 20px; font-weight: 600">What to expect</h3>
+              <h3 class="hd" style="margin: 0; font-size: 20px; font-weight: 600">{{m.listTitle}}</h3>
               <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
                 <sc-for list="{{ m.list }}" as="li" hint-placeholder-count="3">
                   <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; color: #2A2A33">
@@ -665,6 +827,7 @@ class Component extends DCLogic {
       setTilt(Math.max(-8, Math.min(8, d.v * 9)));
     };
     const down = (e) => {
+      if ((this.state || {}).view === 'grid') return;
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       this.dragged = false;
       const now = Date.now();
@@ -718,6 +881,7 @@ class Component extends DCLogic {
       this.setState({ index: target, kick: kickNext(dir) });
     };
     const wheel = (e) => {
+      if ((this.state || {}).view === 'grid') return;
       if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
       this.wAcc = (this.wAcc || 0) + e.deltaX;
       const now = Date.now();
@@ -731,12 +895,24 @@ class Component extends DCLogic {
       if (this.dragged) { e.stopPropagation(); e.preventDefault(); this.dragged = false; }
     };
 
+    // Terms & Conditions popup (placeholder until the official text is ready)
+    const TERMS = ['Terms & Conditions', '', '', '', [], {
+      kicker: 'THE GOOD DEAL · TERMS & CONDITIONS',
+      title: 'Terms & Conditions',
+      sub: 'THE GOOD DEAL, Synerise Advent Calendar, 1–24 December 2026',
+      paras: [
+        'These terms explain how THE GOOD DEAL auctions work and who can take part. The full, official text will be published here before the calendar opens.',
+        '[Paste the official terms and conditions here.]'
+      ],
+      listTitle: 'What the terms cover',
+      list: ['Organiser and duration of the calendar', 'Who can take part', 'How bidding works and how the winner is chosen', 'Prize delivery and dates', 'Personal data and privacy', 'Complaints and contact']
+    }];
     const mi = st.modal;
     const modalOpen = typeof mi === 'number';
-    let m = { canBid: false, kicker: '', title: '', sub: '', hasSub: false, lead: '', hasLead: false, hasVideo: false, paras: [], list: [], hasList: false, details: [], hasCta: false, noCta: true };
+    let m = { listTitle: '', canBid: false, kicker: '', title: '', sub: '', hasSub: false, lead: '', hasLead: false, hasVideo: false, paras: [], list: [], hasList: false, details: [], hasCta: false, noCta: true };
     if (modalOpen) {
-      const P = PR[mi];
-      const mdt = mi ? this.dayDate(mi) : null;
+      const P = mi === -1 ? TERMS : PR[mi];
+      const mdt = mi > 0 ? this.dayDate(mi) : null;
       const wd = mdt ? WD[mdt.getDay()] : '';
       const mLabel = mdt ? mdt.getDate() + ' ' + MONTHS[mdt.getMonth()] : '';
       m = {
@@ -746,7 +922,7 @@ class Component extends DCLogic {
         title: P[5] ? P[5].title : mi ? P[0] : 'How the advent draw works',
         sub: P[5] ? P[5].sub || '' : '', hasSub: !!(P[5] && P[5].sub), hasVideo: !!(P[5] && P[5].video),
         paras: (P[5] ? P[5].paras : [P[2], P[3]]).map((t) => ({ t })),
-        list: P[5] && P[5].list ? P[5].list.map((t) => ({ t })) : [], hasList: !!(P[5] && P[5].list),
+        list: P[5] && P[5].list ? P[5].list.map((t) => ({ t })) : [], hasList: !!(P[5] && P[5].list), listTitle: P[5] && P[5].listTitle || 'What to expect',
         details: P[4] ? P[4].map((d) => ({ k: d[0], v: d[1] })) : [{ k: 'Draw date', v: mLabel + ' ' + (mdt ? mdt.getFullYear() : '') }, { k: 'Winners', v: '1' }]
       };
     }
@@ -765,9 +941,54 @@ class Component extends DCLogic {
       };
     }
     const closeBid = () => this.setState({ bid: null, bidErr: null, bidOk: null });
+
+    // demo login / registration (stored in this browser only)
+    const AKEY = 'tgd-auth-v1';
+    if (!this._authLoaded) {
+      this._authLoaded = true;
+      try { this._savedAuth = JSON.parse(window.localStorage.getItem(AKEY) || 'null'); } catch (e) { this._savedAuth = null; }
+    }
+    const acct = st.acct || this._savedAuth || {};
+    const saveAcct = (next) => { try { window.localStorage.setItem(AKEY, JSON.stringify(next)); } catch (e) {} this.setState({ acct: next }); };
+    const screen = st.auth;
+    const authOpen = !!screen;
+    const TITLES = { login: 'Log in', register: 'Register', sent: 'Check your inbox', confirmed: 'Email confirmed', account: 'You\'re logged in' };
+    const a = {
+      title: TITLES[screen] || '', isLogin: screen === 'login', isRegister: screen === 'register', isSent: screen === 'sent',
+      isConfirmed: screen === 'confirmed', isAccount: screen === 'account',
+      err: st.authErr || '', errOn: !!st.authErr, email: acct.email || 'your email address', pin: acct.pin || '',
+      asEmail: acct.email ? ' as ' + acct.email : ''
+    };
+    const toScreen = (sc) => this.setState({ auth: sc, authErr: null });
+    const closeAuth = () => this.setState({ auth: null, authErr: null, authReturnBid: null });
+    const submitPin = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      const cur = (this.state || {}).acct || this._savedAuth || {};
+      const v = (this._pins || []).map((el) => (el && el.value) || '').join('');
+      const fail = (m) => { this.setState({ authErr: m }); const ps = this._pins || []; const firstEmpty = ps.find((el) => el && !el.value) || ps[0]; if (firstEmpty) firstEmpty.focus(); };
+      // demo: any code (even an empty one) logs you in
+      saveAcct({ ...cur, loggedIn: true });
+      const back = (this.state || {}).authReturnBid;
+      if (typeof back === 'number') this.setState({ auth: null, authErr: null, bid: back, authReturnBid: null, bidErr: null, bidOk: null });
+      else this.setState({ auth: 'account', authErr: null });
+      clearTimeout(this._tt); this.setState({ toast: 'You\'re logged in' }); this._tt = setTimeout(() => this.setState({ toast: null }), 2400);
+    };
+    const submitEmail = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      const v = ((this._email && this._email.value) || '').trim();
+      // demo: any text is accepted as the email address
+      saveAcct({ email: v, pin: String(Math.floor(1000 + Math.random() * 9000)), confirmed: false, loggedIn: false });
+      this.setState({ auth: 'sent', authErr: null });
+    };
+    const simulateConfirm = () => {
+      const cur = (this.state || {}).acct || this._savedAuth || {};
+      saveAcct({ ...cur, confirmed: true });
+      this.setState({ auth: 'confirmed', authErr: null });
+    };
     const submitBid = (e) => {
       if (e && e.preventDefault) e.preventDefault();
       const cur = this.state || {};
+      if (!((cur.acct || this._savedAuth || {}).loggedIn)) return;
       const d = cur.bid;
       if (typeof d !== 'number') return;
       const L = leadOf(d), mn = minNext(L.amt);
@@ -803,6 +1024,55 @@ class Component extends DCLogic {
         this._nick = el;
       },
       openHow: () => this.setState({ modal: 0 }),
+      openTerms: () => this.setState({ modal: -1 }),
+      openLogin: () => this.setState({ auth: acct.loggedIn ? 'account' : 'login', authErr: null }),
+      loginLabel: acct.loggedIn ? 'My account' : 'Login',
+      authOpen, a, closeAuth, submitPin, submitEmail, simulateConfirm,
+      enterPin: (e) => { if (e && e.key === 'Enter') { e.preventDefault(); submitPin(e); } },
+      enterEmail: (e) => { if (e && e.key === 'Enter') { e.preventDefault(); submitEmail(e); } },
+      enterBid: (e) => { if (e && e.key === 'Enter' && e.target && e.target.tagName === 'INPUT') { e.preventDefault(); submitBid(e); } },
+      isLoggedIn: !!acct.loggedIn, notLoggedIn: !acct.loggedIn,
+      loginToBid: () => this.setState({ authReturnBid: st.bid, bid: null, auth: 'login', authErr: null }),
+      registerToBid: () => this.setState({ authReturnBid: st.bid, bid: null, auth: 'register', authErr: null }),
+      goRegister: () => toScreen('register'), goLogin: () => toScreen('login'),
+      logout: () => { saveAcct({ ...acct, loggedIn: false }); this.setState({ auth: 'login', authErr: null }); },
+      pinBoxes: [0, 1, 2, 3].map((k) => {
+        const boxes = () => this._pins || (this._pins = []);
+        const fill = (digits, from) => {
+          const ps = boxes();
+          let j = from;
+          for (const d of digits) { if (j > 3) break; if (ps[j]) ps[j].value = d; j++; }
+          const next = ps[Math.min(j, 3)];
+          if (next) next.focus();
+        };
+        return {
+          label: 'Digit ' + (k + 1) + ' of 4',
+          ac: k === 0 ? 'one-time-code' : 'off',
+          ref: (el) => { if (!el) return; boxes()[k] = el; if (k === 0 && el !== this._pinFirst) { this._pinFirst = el; setTimeout(() => el.focus(), 60); } },
+          onFocus: (e) => { const t = e && e.target; if (t && t.select) t.select(); },
+          onInput: (e) => {
+            const t = e && e.target; if (!t) return;
+            const digits = t.value.replace(/\D/g, '');
+            if (!digits) { t.value = ''; return; }
+            if (digits.length > 1) { t.value = ''; fill(digits.split(''), k); return; }
+            t.value = digits;
+            const nx = boxes()[k + 1]; if (nx) nx.focus();
+          },
+          onKeyDown: (e) => {
+            const ps = boxes(), t = e && e.target;
+            if (e.key === 'Backspace' && t && !t.value && ps[k - 1]) { e.preventDefault(); ps[k - 1].value = ''; ps[k - 1].focus(); }
+            else if (e.key === 'ArrowLeft' && ps[k - 1]) { e.preventDefault(); ps[k - 1].focus(); }
+            else if (e.key === 'ArrowRight' && ps[k + 1]) { e.preventDefault(); ps[k + 1].focus(); }
+          },
+          onPaste: (e) => {
+            const txt = ((e && e.clipboardData && e.clipboardData.getData('text')) || '').replace(/\D/g, '');
+            if (!txt) return;
+            if (e.preventDefault) e.preventDefault();
+            fill(txt.slice(0, 4).split(''), k);
+          }
+        };
+      }),
+      emailRef: (el) => { this._email = el; },
       toastOn: !!st.toast, toast: st.toast || '',
       share: () => {
         const url = window.location.href, title = 'The Good Deal by Synerise';
@@ -820,14 +1090,57 @@ class Component extends DCLogic {
         this._saved = null; this._savedBids = null;
         this.setState({ revealed: { ...SIM_OPENED }, bids: {}, flipped: {}, index: defIndex, modal: null, bid: null });
       },
-      modalKey: (e) => { if (e.key === 'Escape') { if (bidOpen) closeBid(); else closeModal(); } },
+      modalKey: (e) => { if (e.key === 'Escape') { if (authOpen) closeAuth(); else if (bidOpen) closeBid(); else closeModal(); } },
       closeRef: (el) => { if (el && !this._focused) { this._focused = true; el.focus(); } if (!el) this._focused = false; },
+      digitSpacing: this.props.digitSpacing ?? -0.05,
       rope: S.rope, lights: S.lights, decor: S.decor, snowBack: S.snowBack, snowFront: S.snowFront, cards,
       trackW: T * PITCH,
       offset: offsetOf(index),
       trackRef: (el) => { this.track = el; },
       down, move, up, swallow, wheel,
+      noScroll: (e) => { const t = e && (e.currentTarget || e.target); if (t && (t.scrollLeft || t.scrollTop)) { t.scrollLeft = 0; t.scrollTop = 0; } },
       trackCls: st.kick ? (st.kick.n % 2 ? 'ka' : 'kb') + (st.kick.dir > 0 ? ' fwd' : ' bwd') : '',
+      ...(() => {
+        // mini month calendar (Mon–Sun) around the 24 campaign days
+        const first = this.dayDate(1), last = this.dayDate(24);
+        const monthStart = new Date(first.getFullYear(), first.getMonth(), 1);
+        const monthEnd = new Date(last.getFullYear(), last.getMonth() + 1, 0);
+        const start = new Date(monthStart); start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+        const end = new Date(monthEnd); end.setDate(end.getDate() + (7 - ((end.getDay() + 6) % 7) - 1) % 7);
+        const cells = [];
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+          const idx = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - first) / 86400000) + 1;
+          const isDay = idx >= 1 && idx <= 24;
+          const opened = isDay && !!revealed[idx];
+          const unlocked = isDay && idx <= UNLOCKED;
+          const isNew = unlocked && !opened;
+          const sel = isDay && idx === index;
+          const locked = isDay && idx > UNLOCKED;
+          cells.push({
+            n: d.getDate(), hatch: !isDay, isDay, opened, isNew, locked,
+            open: () => this.setState({ view: 'cards', index: idx, kick: kickNext(idx >= index ? 1 : -1) }),
+            icon: opened ? ICONS[(idx - 1) % ICONS.length].src : '',
+            bg: opened ? 'rgba(255,255,255,.14)' : unlocked ? 'rgba(255,201,77,.14)' : 'rgba(255,255,255,.06)',
+            bd: sel ? '1.5px solid #fff' : unlocked ? '1px solid rgba(255,201,77,.55)' : '1px solid rgba(255,255,255,.08)',
+            col: unlocked ? '#fff' : 'rgba(255,255,255,.55)',
+            current: sel ? 'date' : 'false',
+            label: d.getDate() + ' ' + MONTHS[d.getMonth()] + (opened ? ', opened' : isNew ? ', ready to open' : ', locked'),
+            go: () => go(idx)
+          });
+        }
+        return {
+          calCells: cells, calWeekdays: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+          calTitle: MONTHS[first.getMonth()] + ' ' + first.getFullYear(),
+          calRows: Math.ceil(cells.length / 7),
+          calOpened: Object.keys(revealed).filter((k) => +k >= 1 && +k <= 24 && revealed[k]).length
+        };
+      })(),
+      cardsView: st.view !== 'grid', gridView: st.view === 'grid',
+      hint: st.view === 'grid' ? 'Tap a day to see its card' : 'Swipe to browse · tap a card to flip it',
+      viewLabel: st.view === 'grid' ? 'Card view' : 'Calendar view',
+      viewBg: st.view === 'grid' ? 'rgba(255,201,77,.18)' : 'rgba(255,255,255,.06)',
+      viewBd: st.view === 'grid' ? 'rgba(255,201,77,.7)' : 'rgba(255,255,255,.28)',
+      toggleView: () => this.setState({ view: st.view === 'grid' ? 'cards' : 'grid' }),
       cur: index ? this.dayDate(index).getDate() + ' ' + MONTHS[this.dayDate(index).getMonth()] : 'How it works', curSub: index ? ' · ' + pad(index) + ' / 24' : '', pct: r2(((index + 1) / N) * 100),
       atStart: index <= 0, atEnd: index >= N - 1,
       prev: () => go(index - 1), next: () => go(index + 1), home: () => go(0)
