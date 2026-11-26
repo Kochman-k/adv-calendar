@@ -35,6 +35,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
 @keyframes kb{16%{transform:rotate(calc(var(--d) * var(--amp,1) * -7deg))}38%{transform:rotate(calc(var(--d) * var(--amp,1) * 4deg))}58%{transform:rotate(calc(var(--d) * var(--amp,1) * -2deg))}78%{transform:rotate(calc(var(--d) * var(--amp,1) * .8deg))}}
 .hbtn:hover{filter:brightness(1.12)}
 .wish{position:absolute;left:32px;bottom:28px;max-width:330px}
+.fld{width:100%;height:56px;box-sizing:border-box;border:1px solid #CFCBD6;border-radius:12px;background:#fff;font:inherit;font-size:18px;color:#15151B;padding:0 16px}
+.fld:focus{outline:2px solid #15151B;outline-offset:1px;border-color:#15151B}.fld[aria-invalid="true"]{border-color:#C8102E}
 .bnr{height:46px;box-sizing:border-box;white-space:nowrap}
 @media (max-width:1280px){.wish{position:relative;left:auto;bottom:auto;margin:8px auto 36px;max-width:520px;text-align:center}}
 @media (max-width:1100px){.gd{height:104px !important}}
@@ -175,18 +177,23 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
                 <button type="button" onClick="{{ c.flip }}" aria-label="{{c.backLabel}}" style="position: absolute; inset: 0; border: 0; padding: 0; background: transparent; cursor: pointer"></button>
                 <div style="position: absolute; inset: 0; padding: 28px 24px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; pointer-events: none">
                   <span style="font-size: 11px; font-weight: 600; letter-spacing: .14em; color: #4A4A57">THE GOOD DEAL · {{c.kicker}}</span>
-                  <h3 class="hd" style="margin: 4px 0 0; font-size: 32px; font-weight: 600; line-height: 1.1; letter-spacing: 0">{{c.pt}}</h3>
+                  <h3 class="hd" style="margin: 4px 0 0; font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: 0">{{c.pt}}</h3>
                   <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #33333D">{{c.ps}}</p>
-                  <button type="button" onClick="{{ c.info }}" style="pointer-events: auto; position: relative; margin-top: auto; height: 48px; width: 100%; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">More information<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></button>
+                  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+                    <sc-if value="{{ c.canBid }}" hint-placeholder-val="{{ true }}">
+                      <button type="button" onClick="{{ c.bid }}" style="pointer-events: auto; position: relative; height: 48px; width: 100%; border: 0; border-radius: 999px; background: #FFC94D; color: #0B0B0C; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">Place a bid<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></button>
+                    </sc-if>
+                    <button type="button" onClick="{{ c.info }}" style="pointer-events: auto; position: relative; height: 46px; width: 100%; border: 0; border-radius: 999px; background: rgba(255,255,255,.55); color: #15151B; border: 1px solid rgba(21,21,27,.18) !important; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">More information<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15151B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></button>
+                  </div>
                 </div>
               </div>
               </sc-if>
 
             </div>
-            <sc-if value="{{ c.showIcon }}" hint-placeholder-val="{{ false }}">
-              <img src="{{c.icon}}" alt="{{c.iconAlt}}" draggable="false" style="position: absolute; left: {{c.ix}}px; top: {{c.iy}}px; width: {{c.isz}}px; height: auto; transform: rotate({{c.ir}}deg); filter: drop-shadow(0 16px 18px rgba(0,0,0,.35)); pointer-events: none; animation: popin .7s cubic-bezier(.2,1.5,.4,1) .55s both">
-            </sc-if>
             <div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 26px; background: #000; opacity: {{c.dim}}; transition: opacity .6s ease; pointer-events: none"></div>
+            <sc-if value="{{ c.showIcon }}" hint-placeholder-val="{{ false }}">
+              <img src="{{c.icon}}" alt="{{c.iconAlt}}" draggable="false" style="position: absolute; left: {{c.ix}}px; top: {{c.iy}}px; width: {{c.isz}}px; height: auto; transform: rotate({{c.ir}}deg); filter: drop-shadow(0 16px 18px rgba(0,0,0,.35)) brightness({{c.ibr}}); transition: filter .6s ease; pointer-events: none; animation: popin .7s cubic-bezier(.2,1.5,.4,1) .55s both">
+            </sc-if>
           </div>
         </div>
         </div>
@@ -227,17 +234,70 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
     <span aria-hidden="true" class="ctlpad"></span>
   </nav>
   <p style="position: relative; z-index: 20; margin: 0 0 32px; text-align: center; font-size: 12.5px; color: rgba(255,255,255,.6)">Swipe to browse · tap a card to flip it</p>
-  <sc-if value="{{ testMode }}" hint-placeholder-val="{{ true }}">
-    <div style="position: relative; z-index: 20; margin: -20px 0 32px; display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 12.5px; color: rgba(255,255,255,.5)">
-      <span>{{testText}}</span>
-      <button type="button" onClick="{{ resetTest }}" style="height: 32px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: transparent; color: rgba(255,255,255,.8); font-size: 12.5px; cursor: pointer">Reset demo</button>
-    </div>
-  </sc-if>
 
   <aside class="wish" aria-label="Season's greetings" style="z-index: 20; color: rgba(255,255,255,.82)">
     <p class="hd" style="margin: 0 0 6px; font-size: 18px; font-weight: 600; color: #fff">Season's greetings</p>
     <p style="margin: 0; font-size: 13.5px; line-height: 1.55">Thank you to the whole Synerise team and to our clients for a great year together. Wishing you a warm Christmas Eve and a new year full of good deals.</p>
   </aside>
+
+  <sc-if value="{{ bidOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 110; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: Jost, system-ui, sans-serif">
+      <button type="button" onClick="{{ closeBid }}" aria-label="Close" tabindex="-1" style="position: absolute; inset: 0; border: 0; padding: 0; background: rgba(0,0,0,.6); cursor: pointer; animation: fade .3s ease"></button>
+      <div role="dialog" aria-modal="true" aria-labelledby="bid-title" onKeyDown="{{ modalKey }}" style="position: relative; width: 100%; max-width: 560px; max-height: calc(100vh - 40px); overflow: auto; overscroll-behavior: contain; border-radius: 28px; background: linear-gradient(135deg, #F4E1FF 0%, #D6F2FF 30%, #FFF5D2 55%, #FFDAE8 78%, #E3DEFF 100%); color: #15151B; padding: clamp(22px, 4vw, 40px); box-sizing: border-box; box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: pop .4s cubic-bezier(.2,1.2,.4,1)">
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: .14em; color: #55555F">{{b.kicker}}</span>
+              <h2 id="bid-title" class="hd" style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.15">{{b.title}}</h2>
+            </div>
+            <button type="button" ref="{{ closeRef }}" onClick="{{ closeBid }}" aria-label="Close" style="flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(21,21,27,.16); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15151B" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+            </button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 15px; color: #55555F">Leading demo bid</span>
+            <span class="hd" style="font-size: clamp(44px, 12vw, 60px); font-weight: 500; line-height: 1.05; font-variant-numeric: tabular-nums">{{b.lead}}</span>
+            <span style="font-size: 16px; color: #55555F">by: <strong style="color: #15151B; font-weight: 600">{{b.by}}</strong></span>
+          </div>
+
+          <sc-if value="{{ b.okOn }}" hint-placeholder-val="{{ false }}">
+            <p role="status" style="margin: 0; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #E3F5EA; color: #145C37; font-size: 15px; font-weight: 500">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#145C37" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{b.ok}}
+            </p>
+          </sc-if>
+
+          <div style="height: 1px; background: rgba(21,21,27,.12)"></div>
+
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-size: 17px">
+            <span>Minimum next bid</span>
+            <span style="font-weight: 600; color: #1E7A4C; font-variant-numeric: tabular-nums">{{b.min}}</span>
+          </div>
+
+          <form onSubmit="{{ submitBid }}" style="display: flex; flex-direction: column; gap: 20px">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <label for="bid-amount" style="font-size: 17px; font-weight: 600">Bid amount (PLN)</label>
+              <div style="position: relative">
+                <input id="bid-amount" class="fld" ref="{{ amountRef }}" type="text" inputmode="decimal" autocomplete="off" placeholder="{{b.minRaw}}" aria-invalid="{{b.errOn}}" aria-describedby="bid-help bid-err" style="padding-right: 64px; font-variant-numeric: tabular-nums">
+                <span aria-hidden="true" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #55555F; pointer-events: none">PLN</span>
+              </div>
+              <sc-if value="{{ b.errOn }}" hint-placeholder-val="{{ false }}">
+                <p id="bid-err" role="alert" style="margin: 0; font-size: 14px; font-weight: 500; color: #B00D27">{{b.err}}</p>
+              </sc-if>
+              <p id="bid-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">From {{b.min}} to PLN 1,000,000, at most 2 decimal places (comma or period).</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <label for="bid-nick" style="font-size: 17px; font-weight: 600">Nickname <span style="font-weight: 400; color: #55555F">(optional)</span></label>
+              <input id="bid-nick" class="fld" ref="{{ nickRef }}" type="text" maxlength="30" autocomplete="nickname" placeholder="e.g. Morning Runner" aria-describedby="nick-help">
+              <p id="nick-help" style="margin: 0; font-size: 13.5px; line-height: 1.45; color: #55555F">Don't use your full name. Your nickname is visible only in this browser.</p>
+            </div>
+            <button type="submit" style="height: 56px; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 17px; font-weight: 600; cursor: pointer">Place demo bid</button>
+          </form>
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #77737D">Demo only: bids are saved in this browser and are not sent anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 
   <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
     <div role="status" style="position: fixed; left: 50%; bottom: 28px; z-index: 90; transform: translateX(-50%); padding: 12px 20px; border-radius: 999px; background: #fff; color: #0B0B0C; font-size: 14px; font-weight: 600; box-shadow: 0 12px 30px rgba(0,0,0,.4); animation: nudge 2.4s ease both">{{toast}}</div>
@@ -301,7 +361,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #FFD27A;outline-offset:3p
             </sc-for>
           </div>
           <sc-if value="{{ m.noCta }}" hint-placeholder-val="{{ true }}">
-            <button type="button" onClick="{{ closeModal }}" style="margin-top: 4px; height: 52px; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer">Got it</button>
+            <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 10px">
+              <sc-if value="{{ m.canBid }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ bidFromModal }}" style="flex: 1 1 220px; height: 52px; border: 0; border-radius: 999px; background: #FFC94D; color: #0B0B0C; font-size: 15px; font-weight: 600; cursor: pointer">Place a bid</button>
+              </sc-if>
+              <button type="button" onClick="{{ closeModal }}" style="flex: 1 1 140px; height: 52px; border: 0; border-radius: 999px; background: #15151B; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer">Got it</button>
+            </div>
           </sc-if>
           <sc-if value="{{ m.hasCta }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 10px">
@@ -422,6 +487,16 @@ class Component extends DCLogic {
     const TEST = SIM != null || this.startDate().getMonth() !== 11 || this.startDate().getDate() !== 1;
     const defIndex = Math.max(1, UNLOCKED);
     const index = st.index ?? defIndex;
+    const BKEY = 'tgd-bids-v1';
+    if (!this._bidsLoaded) {
+      this._bidsLoaded = true;
+      try { this._savedBids = JSON.parse(window.localStorage.getItem(BKEY) || 'null'); } catch (e) { this._savedBids = null; }
+    }
+    const START_BIDS = { 1: 1000, 2: 800, 3: 300, 4: 350, 5: 250 };
+    const bids = st.bids || this._savedBids || {};
+    const leadOf = (d) => bids[d] || { amt: START_BIDS[d] || 100, by: 'Anonymous' };
+    const minNext = (amt) => Math.ceil(amt + Math.max(10, amt * 0.01));
+    const pln = (n) => 'PLN ' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
     const SKEY = 'tgd-revealed-' + this.startDate().toDateString() + (SIM != null ? '-sim' + SIM : '');
     // demo: days before the simulated day are already opened, with hand-placed icons
     const SIM_OPENED = SIM != null ? { 1: { w: 172, x: 176, y: -34, r: 10 }, 2: { w: 150, x: -32, y: 74, r: -10 }, 3: { w: 166, x: 184, y: 178, r: 12 }, 4: { w: 160, x: -34, y: -26, r: -12 } } : {};
@@ -523,13 +598,14 @@ class Component extends DCLogic {
         showIcon: !!(rv && !flipped[i]), icon: rv ? ICONS[(i - 1) % ICONS.length].src : '', iconAlt: rv ? ICONS[(i - 1) % ICONS.length].alt : '',
         ix: rv ? rv.x : 0, iy: rv ? rv.y : 0, isz: rv ? rv.w : 0, ir: rv ? rv.r : 0,
         month: dt ? MONTHS[dt.getMonth()] : '', dnum: dt ? dt.getDate() : '', dateLabel, range: rangeLabel,
+        canBid: i >= 1 && i <= UNLOCKED, bid: () => this.setState({ bid: i, bidErr: null, bidOk: null }),
         isIntro: i === 0, isDay: i > 0, day, wd, wdUp: wd.toUpperCase(),
         kicker: i ? 'DAY ' + pad(day) : 'HOW IT WORKS',
         pt: PR[i][0], ps: PR[i][1],
         info: () => this.setState({ modal: i }),
         left: (i + LEAD) * PITCH + PITCH / 2 - CW / 2,
         rot: flipped[i] && near ? 180 : 0, dur: S.anim[i].dur, dl: S.anim[i].dl, kd: S.anim[i].kd,
-        sc: i === index ? 1 : 0.92, dim: i === index ? 0 : 0.4,
+        sc: i === index ? 1 : 0.92, dim: i === index ? 0 : 0.4, ibr: i === index ? 1 : 0.6,
         frontLabel: i ? (locked ? dateLabel + ', locked' : 'Discover ' + dateLabel) : 'Flip card: How it works',
         backLabel: i ? 'Flip back: ' + dateLabel : 'Flip back: How it works',
         flip: () => {
@@ -657,7 +733,7 @@ class Component extends DCLogic {
 
     const mi = st.modal;
     const modalOpen = typeof mi === 'number';
-    let m = { kicker: '', title: '', sub: '', hasSub: false, lead: '', hasLead: false, hasVideo: false, paras: [], list: [], hasList: false, details: [], hasCta: false, noCta: true };
+    let m = { canBid: false, kicker: '', title: '', sub: '', hasSub: false, lead: '', hasLead: false, hasVideo: false, paras: [], list: [], hasList: false, details: [], hasCta: false, noCta: true };
     if (modalOpen) {
       const P = PR[mi];
       const mdt = mi ? this.dayDate(mi) : null;
@@ -665,6 +741,7 @@ class Component extends DCLogic {
       const mLabel = mdt ? mdt.getDate() + ' ' + MONTHS[mdt.getMonth()] : '';
       m = {
         kicker: P[5] && P[5].kicker ? P[5].kicker : mi ? 'DAY ' + pad(mi) + ' · ' + wd.toUpperCase() + ', ' + mLabel.toUpperCase() : 'THE GOOD DEAL · HOW IT WORKS',
+        canBid: mi >= 1 && mi <= UNLOCKED,
         lead: P[5] && P[5].lead || '', hasLead: !!(P[5] && P[5].lead), hasCta: !!(P[5] && P[5].cta && UNLOCKED >= 1), noCta: !(P[5] && P[5].cta && UNLOCKED >= 1),
         title: P[5] ? P[5].title : mi ? P[0] : 'How the advent draw works',
         sub: P[5] ? P[5].sub || '' : '', hasSub: !!(P[5] && P[5].sub), hasVideo: !!(P[5] && P[5].video),
@@ -675,6 +752,41 @@ class Component extends DCLogic {
     }
     const closeModal = () => this.setState({ modal: null });
 
+    // bid drawer
+    const bi = st.bid;
+    const bidOpen = typeof bi === 'number';
+    let b = { kicker: '', title: '', lead: '', by: '', min: '', minRaw: '', err: '', errOn: false, ok: '', okOn: false };
+    if (bidOpen) {
+      const L = leadOf(bi), mn = minNext(L.amt), bdt = this.dayDate(bi);
+      b = {
+        kicker: 'DAY ' + pad(bi) + ' · ' + bdt.getDate() + ' ' + MONTHS[bdt.getMonth()].toUpperCase(),
+        title: PR[bi][0], lead: pln(L.amt), by: L.by + (L.mine ? ' (you)' : ''),
+        min: pln(mn), minRaw: String(mn), err: st.bidErr || '', errOn: !!st.bidErr, ok: st.bidOk || '', okOn: !!st.bidOk
+      };
+    }
+    const closeBid = () => this.setState({ bid: null, bidErr: null, bidOk: null });
+    const submitBid = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      const cur = this.state || {};
+      const d = cur.bid;
+      if (typeof d !== 'number') return;
+      const L = leadOf(d), mn = minNext(L.amt);
+      const raw = ((this._amt && this._amt.value) || '').replace(/\s/g, '');
+      const fail = (msg) => { this.setState({ bidErr: msg, bidOk: null }); if (this._amt) this._amt.focus(); };
+      if (!raw) return fail('Enter your bid amount.');
+      if (!/^\d+([.,]\d{1,2})?$/.test(raw)) return fail('Use digits only, with at most 2 decimal places, e.g. ' + mn + ' or ' + mn + ',50.');
+      const amt = parseFloat(raw.replace(',', '.'));
+      if (amt < mn) return fail('Your bid must be at least ' + pln(mn) + '.');
+      if (amt > 1000000) return fail('The maximum bid is PLN 1,000,000.');
+      const nick = ((this._nick && this._nick.value) || '').trim().slice(0, 30);
+      const next = { ...(cur.bids || this._savedBids || {}) };
+      next[d] = { amt, by: nick || 'Anonymous', mine: true };
+      try { window.localStorage.setItem(BKEY, JSON.stringify(next)); } catch (err) {}
+      try { if (nick) window.localStorage.setItem('tgd-nick', nick); } catch (err) {}
+      if (this._amt) this._amt.value = '';
+      this.setState({ bids: next, bidErr: null, bidOk: 'Your bid of ' + pln(amt) + ' is now leading.' });
+    };
+
     return {
       modalOpen, m, closeModal,
       testMode: TEST,
@@ -683,6 +795,13 @@ class Component extends DCLogic {
       todayLabel: UNLOCKED >= 1 ? this.dayDate(UNLOCKED).getDate() + ' ' + MONTHS[this.dayDate(UNLOCKED).getMonth()] : '',
       goToday: () => go(UNLOCKED),
       openTodayFromModal: () => { this.setState({ modal: null }); go(UNLOCKED); },
+      bidOpen, b, closeBid, submitBid,
+      bidFromModal: () => this.setState({ bid: st.modal, modal: null, bidErr: null, bidOk: null }),
+      amountRef: (el) => { this._amt = el; },
+      nickRef: (el) => {
+        if (el && el !== this._nick) { try { el.value = window.localStorage.getItem('tgd-nick') || ''; } catch (e) {} }
+        this._nick = el;
+      },
       openHow: () => this.setState({ modal: 0 }),
       toastOn: !!st.toast, toast: st.toast || '',
       share: () => {
@@ -697,11 +816,11 @@ class Component extends DCLogic {
         else copy();
       },
       resetTest: () => {
-        try { window.localStorage.removeItem(SKEY); } catch (e) {}
-        this._saved = null;
-        this.setState({ revealed: { ...SIM_OPENED }, flipped: {}, index: defIndex, modal: null });
+        try { window.localStorage.removeItem(SKEY); window.localStorage.removeItem(BKEY); } catch (e) {}
+        this._saved = null; this._savedBids = null;
+        this.setState({ revealed: { ...SIM_OPENED }, bids: {}, flipped: {}, index: defIndex, modal: null, bid: null });
       },
-      modalKey: (e) => { if (e.key === 'Escape') closeModal(); },
+      modalKey: (e) => { if (e.key === 'Escape') { if (bidOpen) closeBid(); else closeModal(); } },
       closeRef: (el) => { if (el && !this._focused) { this._focused = true; el.focus(); } if (!el) this._focused = false; },
       rope: S.rope, lights: S.lights, decor: S.decor, snowBack: S.snowBack, snowFront: S.snowFront, cards,
       trackW: T * PITCH,
